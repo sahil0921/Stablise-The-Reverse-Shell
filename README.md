@@ -21,3 +21,26 @@ Stabilising the shell provides a more interactive and reliable terminal experien
 ```bash
 python -c 'import pty;pty.spawn("/bin/bash")'
 ```
+
+## Method 2 - Full TTY Upgrade
+
+```bash
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+CTRL + Z
+stty raw -echo; fg
+
+export TERM=xterm-256color
+```
+
+Steps:
+
+- Spawn a PTY shell.
+- Background the session using CTRL + Z.
+- Configure local terminal with stty raw -echo.
+- Bring the shell back using fg.
+- Set terminal type.
+
+This method provides a near fully interactive shell.
+
+
+
