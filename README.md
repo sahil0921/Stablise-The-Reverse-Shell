@@ -22,7 +22,7 @@ Stabilising the shell provides a more interactive and reliable terminal experien
 ```bash
 python -c 'import pty;pty.spawn("/bin/bash")'
 ```
-````
+
 
 Spawns a pseudo-terminal using Python.
 
