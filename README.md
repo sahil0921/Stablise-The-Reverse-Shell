@@ -1,6 +1,4 @@
-README.md ke liye ye professional version use kar sakte ho:
 
-````markdown
 # Stabilise The Reverse Shell
 
 A collection of techniques to upgrade a basic reverse shell into a fully interactive TTY shell during penetration testing and CTF environments.
