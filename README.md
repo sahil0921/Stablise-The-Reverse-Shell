@@ -37,7 +37,7 @@ stty raw -echo; fg
 
 export TERM=xterm-256color
 ```
-Screenshot 2025-05-29 174435.png
+![[Screenshot 2025-05-29 174435.png]]
 
 Steps:
 
